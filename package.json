@@ -1,0 +1,19 @@
+{
+  "name": "natures",
+  "version": "1.0.0",
+  "description": "Root folder of natures app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bidyut-Kr-Das/Natures.git"
+  },
+  "author": "Bidyut Kr. Das",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bidyut-Kr-Das/Natures/issues"
+  },
+  "homepage": "https://github.com/Bidyut-Kr-Das/Natures#readme"
+}
