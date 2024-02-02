@@ -1,4 +1,6 @@
-import express from "express";
+import { Router } from "express";
+
+//@ controller function import
 import {
   getAllTours,
   insertTour,
@@ -7,9 +9,14 @@ import {
   deleteTour,
 } from "../controllers/tour.controller.js";
 
-const router = express.Router();
+//@ middleware import
+import { checkId, checkTour } from "../middlewares/tour.middleware.js";
 
-router.route(`/`).get(getAllTours).post(insertTour);
+const router = Router();
+
+router.param("id", checkId);
+
+router.route(`/`).get(getAllTours).post(checkTour, insertTour);
 
 router.route(`/:id`).get(getTour).patch(updateTour).delete(deleteTour);
 

@@ -3,6 +3,8 @@ import { readFileSync } from "fs";
 
 let tours = readFileSync(`./public/database/tours.json`);
 tours = JSON.parse(tours);
+
+//get all tours
 export const getAllTours = (req, res) => {
   res.status(200).json({
     status: "success",
@@ -12,6 +14,8 @@ export const getAllTours = (req, res) => {
     },
   });
 };
+
+//insert a new tour
 export const insertTour = (req, res) => {
   const newId = tours[tours.length - 1].id;
   const tour = Object.assign({ id: newId + 1 }, req.body);
@@ -19,22 +23,15 @@ export const insertTour = (req, res) => {
   res.status(201).json({
     status: "success",
     data: {
-      tours,
+      tour,
     },
   });
 };
 
+//
 export const getTour = (req, res) => {
   // console.log(req.params);
   const id = Number(req.params.id);
-
-  //Checking if the id is invalid or not
-  if (id > tours.length) {
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid Id",
-    });
-  }
 
   //find returns the first matching element
   const tour = tours.find((element) => {
