@@ -2,9 +2,10 @@
   "name": "natures",
   "version": "1.0.0",
   "description": "This is a tourism website",
-  "main": "app.js",
+  "main": "src/server.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon ./src/server.js"
   },
   "author": "Bidyut Kr. Das",
   "license": "ISC",
