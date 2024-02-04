@@ -2,7 +2,7 @@
 
 - developed by [Bidyut Kr. Das](https://github.com/Bidyut-Kr-Das)
 
-- developed using
+- developed using <br>
   ![hu](https://skillicons.dev/icons?i=js,ts,nodejs,nextjs,expressjs,mongodb,tailwind)
 
 > Frontend under development
