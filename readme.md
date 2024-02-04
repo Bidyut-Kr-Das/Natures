@@ -1,6 +1,7 @@
 # Natours Website
 
 - developed by [Bidyut Kr. Das](https://github.com/Bidyut-Kr-Das)
+
 - developed using
   ![hu](https://skillicons.dev/icons?i=js,ts,nodejs,nextjs,expressjs,mongodb,tailwind)
 
