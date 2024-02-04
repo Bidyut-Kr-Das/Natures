@@ -25,10 +25,10 @@
 
     - `returns searched field that is greater than the value`
       available options
-      `gt` = greater than
-      `lt` = less than
-      `gte` = greater than equal to
-      `lte` = less than equal to
+      `gt` = greater than <br>
+      `lt` = less than <br>
+      `gte` = greater than equal to <br>
+      `lte` = less than equal to <br>
       works in all number fields
 
       ```bash
