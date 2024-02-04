@@ -13,15 +13,15 @@
 
     - `returns all tours`
 
-    ```bash
-    /api/v1/tours
-    ```
+      ```bash
+      /api/v1/tours
+      ```
 
     - `returns searched field that matches with the value `
 
-    ```bash
-    /api/v1/tours?field=value
-    ```
+      ```bash
+      /api/v1/tours?field=value
+      ```
 
     - `returns searched field that is greater than the value`
       available options
@@ -31,9 +31,9 @@
       `lte` = less than equal to
       works in all number fields
 
-    ```bash
-    /api/v1/tours?field[gt]=value
-    ```
+      ```bash
+      /api/v1/tours?field[gt]=value
+      ```
 
   - > http method - POST
 
