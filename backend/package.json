@@ -1,9 +1,17 @@
 {
-  "name": "natures",
+  "name": "natours",
   "version": "1.0.0",
   "description": "This is a tourism website",
   "main": "src/server.js",
   "type": "module",
+  "imports": {
+    "#src/*": "./src/*",
+    "#routes/*": "./src/routes/*",
+    "#models/*": "./src/models/*",
+    "#middlewares/*": "./src/middlewares/*",
+    "#controllers/*": "./src/controllers/*",
+    "#db/*": "./src/db/*"
+  },
   "scripts": {
     "dev": "nodemon ./src/server.js"
   },
@@ -12,6 +20,7 @@
   "dependencies": {
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
+    "module-alias": "^2.2.3",
     "mongoose": "^8.1.1"
   },
   "devDependencies": {

@@ -1,15 +1,4 @@
-import { readFileSync } from "fs";
-
-let tours = readFileSync(`./public/database/tours.json`);
-tours = JSON.parse(tours);
-
 export const checkId = (req, res, next, val) => {
-  //   console.log(typeof val);
-  if (Number(val) > tours.length)
-    return res.status(404).json({
-      status: "fail",
-      message: "Id not found lol",
-    });
   next();
 };
 
