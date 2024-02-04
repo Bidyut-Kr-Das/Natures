@@ -1,6 +1,8 @@
 # Natours Website
 
 - developed by [Bidyut Kr. Das](https://github.com/Bidyut-Kr-Das)
+- developed using
+  ![hu](https://skillicons.dev/icons?i=js,ts,nodejs,nextjs,expressjs,mongodb,tailwind)
 
 > Frontend under development
 
@@ -24,7 +26,7 @@
       ```
 
     - `returns searched field that is greater than the value`
-      available options
+      available options <br>
       `gt` = greater than <br>
       `lt` = less than <br>
       `gte` = greater than equal to <br>
