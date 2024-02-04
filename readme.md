@@ -2,7 +2,9 @@
 
 - developed by [Bidyut Kr. Das](https://github.com/Bidyut-Kr-Das)
 
-- developed using <br>
+- developed using
+  <br>
+  <br>
   ![hu](https://skillicons.dev/icons?i=js,ts,nodejs,nextjs,expressjs,mongodb,tailwind)
 
 > Frontend under development
@@ -16,13 +18,13 @@
 
     - `returns all tours`
 
-      ```bash
+      ```
       /api/v1/tours
       ```
 
     - `returns searched field that matches with the value `
 
-      ```bash
+      ```
       /api/v1/tours?field=value
       ```
 
@@ -34,7 +36,7 @@
       `lte` = less than equal to <br>
       works in all number fields
 
-      ```bash
+      ```
       /api/v1/tours?field[gt]=value
       ```
 
@@ -42,6 +44,6 @@
 
     - `Creates a new tour(validation applied)`
 
-      ```bash
+      ```
       /api/v1/tours
       ```
