@@ -21,17 +21,18 @@ const tourSchema = new Schema({
     type: String,
     trim: true,
   },
-  ratingAverage: {
+  ratingsAverage: {
     type: Number,
     default: 4.5,
   },
-  ratingQuantity: {
+  ratingsQuantity: {
     type: Number,
     default: 0,
   },
   price: {
     type: Number,
     required: [true, "Tour must have a price property."],
+    // select: false,
   },
   description: {
     type: String,
@@ -44,9 +45,14 @@ const tourSchema = new Schema({
   images: {
     type: [String],
   },
+  difficulty: {
+    type: String,
+    required: [true, "A tour must have a difficulty"],
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
+    select: false,
   },
   startDates: [Date],
 });

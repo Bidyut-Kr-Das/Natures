@@ -1,4 +1,9 @@
 export const checkId = (req, res, next, val) => {
+  console.log(val);
+  next();
+};
+export const checkName = (req, res, next, val) => {
+  console.log(val);
   next();
 };
 

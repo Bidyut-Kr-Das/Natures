@@ -1,31 +1,12 @@
-// import { json } from "express";
-
 import { Tour } from "#models/tours.model.js";
+import APIfeatures from "#utils/apiFeatures.js";
 
 //get all tours
 export const getAllTours = async (req, res) => {
   try {
-    //Build the query
-    const originalQuery = { ...req.query };
-    const excludingQueries = ["field", "page", "sort", "limit"];
-    excludingQueries.forEach((queryElement) => {
-      delete originalQuery[queryElement];
-    });
-
-    //converting the object into string then using regex to find all the occurence in that string \b checks for exact match and g at the end of regex finds all occurence the replace command returns the matched string with replaced string
-
-    let filteredQuery = JSON.stringify(originalQuery);
-    filteredQuery = filteredQuery.replace(/\b(gt|gte|lt|lte)\b/g, (match) => {
-      return `$${match}`;
-    });
-    // console.log(JSON.parse(filteredQuery));
-
-    const query = Tour.find(JSON.parse(filteredQuery)); //<-- As model.find() returns a query and we can chain this with multiple option and later await for the query to get executed and return the result
-
-    //Executing the query by awaiting for it
-    const tours = await query;
-
-    //Sending the response
+    const features = new APIfeatures(Tour.find(), req.query);
+    const query1 = features.filter().paginate().sortOut().selectFields();
+    const tours = await query1.query;
     res.status(200).json({
       status: "success",
       results: tours.length,
@@ -34,9 +15,10 @@ export const getAllTours = async (req, res) => {
       },
     });
   } catch (error) {
+    // throw error;
     res.status(404).json({
       status: "fail",
-      message: error,
+      message: error.message,
     });
   }
 };
