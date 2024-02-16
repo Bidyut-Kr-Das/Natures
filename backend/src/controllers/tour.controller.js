@@ -1,6 +1,12 @@
 import { Tour } from "#models/tours.model.js";
 import APIfeatures from "#utils/apiFeatures.js";
 
+//helper functon
+const catchAsyncError = (fn) => {
+  return ((req, res, next) => {
+    fn(req, res, next).catch(err => { next(err) });
+  })
+}
 //get all tours
 export const getAllTours = async (req, res) => {
   try {
