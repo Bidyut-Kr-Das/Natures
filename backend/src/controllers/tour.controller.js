@@ -3,6 +3,8 @@ import APIfeatures from "#utils/apiFeatures.js";
 
 //helper functon
 const catchAsyncError = (fn) => {
+
+  //This function will return a function that will be called by express when this controller is need
   return ((req, res, next) => {
     fn(req, res, next).catch(err => { next(err) });
   })
