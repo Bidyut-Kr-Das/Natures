@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const tourSchema = new Schema({
-  id: Number,
+  // id: Number,
   name: {
     type: String,
     required: [true, "Tour must have a name property."],
@@ -11,6 +11,7 @@ const tourSchema = new Schema({
   duration: {
     type: Number,
     required: [true, "tour must have a duration property."],
+    // unique: true,
   },
   maxGroupSize: {
     type: Number,
@@ -33,6 +34,7 @@ const tourSchema = new Schema({
     type: Number,
     required: [true, "Tour must have a price property."],
     // select: false,
+    unique: true,
   },
   description: {
     type: String,
@@ -48,6 +50,7 @@ const tourSchema = new Schema({
   difficulty: {
     type: String,
     required: [true, "A tour must have a difficulty"],
+    enum: ["easy", "medium", "difficult"],
   },
   createdAt: {
     type: Date,

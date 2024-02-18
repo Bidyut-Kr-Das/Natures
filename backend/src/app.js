@@ -13,6 +13,10 @@ const app = express();
 //middleware to parse the incoming json req into actual json req
 app.use(express.json());
 
+//this is used to parse the url 
+//extended true means object inside object is also allowed
+app.use(express.urlencoded({ extended: true }));
+
 //routing
 app.use(`/api/v1/tours`, tourRouter);
 

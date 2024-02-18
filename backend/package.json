@@ -14,14 +14,14 @@
     "#utils/*": "./src/utils/*"
   },
   "scripts": {
-    "dev": "nodemon ./src/server.js"
+    "dev": "nodemon ./src/server.js",
+    "start": "NODE_ENV=production nodemon ./src/server.js"
   },
   "author": "Bidyut Kr. Das",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
-    "module-alias": "^2.2.3",
     "mongoose": "^8.1.1"
   },
   "devDependencies": {

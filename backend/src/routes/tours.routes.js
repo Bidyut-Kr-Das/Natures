@@ -10,7 +10,7 @@ import {
 } from "#controllers/tour.controller.js";
 
 //@ middleware import
-import { checkId, checkName } from "#middlewares/tour.middleware.js";
+import { checkId } from "#middlewares/tour.middleware.js";
 
 const router = Router();
 

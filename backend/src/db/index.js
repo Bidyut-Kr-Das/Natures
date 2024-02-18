@@ -3,15 +3,14 @@ import { DB_NAME } from "#src/constants.js";
 
 const connectDB = async () => {
   try {
-    const DatabaseUrl = process.env.DB_URI.replace(
-      "<PASSWORD>",
+    const mongoUrl = process.env.DB_URI.replace(
+      `<PASSWORD>`,
       process.env.DB_PASS,
     );
-    await mongoose.connect(`${DatabaseUrl}/${DB_NAME}`);
-    console.log(`Connected to database.`);
+    const connection = await mongoose.connect(`${mongoUrl}/${DB_NAME}`);
+    // console.log("connected to database.");
   } catch (error) {
-    console.log("Error: " + error);
-    throw error;
+    console.log(error);
   }
 };
 

@@ -1,115 +1,93 @@
 import { Tour } from "#models/tours.model.js";
 import APIfeatures from "#utils/apiFeatures.js";
+import AppError from "#utils/appError.js";
 
 //helper functon
-const catchAsyncError = (fn) => {
-
-  //This function will return a function that will be called by express when this controller is need
-  return ((req, res, next) => {
-    fn(req, res, next).catch(err => { next(err) });
-  })
-}
-//get all tours
-export const getAllTours = async (req, res) => {
-  try {
-    const features = new APIfeatures(Tour.find(), req.query);
-    const query1 = features.filter().paginate().sortOut().selectFields();
-    const tours = await query1.query;
-    res.status(200).json({
-      status: "success",
-      results: tours.length,
-      data: {
-        tours,
-      },
+const catchAsyncError = (requestHandler) => {
+  //This function will return a function that will be called by express when this controller is needed
+  return (req, res, next) => {
+    requestHandler(req, res, next).catch((err) => {
+      next(err);
     });
-  } catch (error) {
-    // throw error;
-    res.status(404).json({
-      status: "fail",
-      message: error.message,
-    });
-  }
+  };
 };
+
+//get all tours
+export const getAllTours = catchAsyncError(async (req, res, next) => {
+  const features = new APIfeatures(Tour.find(), req.query);
+  const finalQuery = features.filter().paginate().sortOut().selectFields();
+  const tours = await finalQuery.query;
+  res.status(200).json({
+    status: "success",
+    results: tours.length,
+    data: {
+      tours,
+    },
+  });
+});
 
 //insert a new tour
-export const insertTour = async (req, res) => {
-  try {
-    const tour = await Tour.create(req.body);
-    // console.log(tour);
-    res.status(201).json({
-      status: "success",
-      data: {
-        tour,
-      },
-    });
-  } catch (error) {
-    res.status(400).json({
-      status: "fail",
-      message: error,
-    });
-  }
-};
+export const insertTour = catchAsyncError(async (req, res, next) => {
+  const tour = await Tour.create(req.body);
+  // console.log(tour);
+  res.status(201).json({
+    status: "success",
+    data: {
+      tour,
+    },
+  });
+});
 
 //
-export const getTour = async (req, res) => {
-  try {
-    const tour = await Tour.findById(req.params.id);
-    if (!tour)
-      return res.status(404).json({
-        status: "fail",
-        message: "tour does not exist",
-      });
-    res.status(200).json({
-      status: "success",
-      data: {
-        tour,
-      },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: "fail",
-      message: error,
-    });
-  }
-};
-
-export const updateTour = async (req, res) => {
-  try {
-    const tour = await Tour.findOneAndUpdate(
-      {
-        _id: req.params.id,
-      },
-      req.body,
-      {
-        new: true, //<-- This returns the new updated document if set to true otherwise return the acknowledgement statement
-        // runValidator: true,
-      },
+export const getTour = catchAsyncError(async (req, res, next) => {
+  const feature = new APIfeatures(Tour.findById(req.params.id), req.query);
+  const finalQueryObject = feature.selectFields();
+  const tour = await finalQueryObject.query;
+  if (!tour)
+    return next(
+      new AppError(`Tour with ${req.params.id} id does not exist`, 404),
     );
-    res.status(200).json({
-      status: "success",
-      data: {
-        tour,
-      },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: "fail",
-      message: error,
-    });
-  }
-};
+  res.status(200).json({
+    status: "success",
+    data: {
+      tour,
+    },
+  });
+});
 
-export const deleteTour = async (req, res) => {
-  try {
-    await Tour.findOneAndDelete(req.params.id);
-    res.status(204).json({
-      status: "success",
-      message: "tour deleted",
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: "fail",
-      message: error,
-    });
-  }
-};
+export const updateTour = catchAsyncError(async (req, res, next) => {
+  const tour = await Tour.findOneAndUpdate(
+    {
+      _id: req.params.id,
+    },
+    req.body,
+    {
+      new: true, //<-- This returns the new updated document if set to true otherwise return the acknowledgement statement
+      // runValidator: true,
+    },
+  );
+  if (!tour)
+    return next(
+      new AppError(`Tour with ${req.params.id} id does not exist`, 404),
+    );
+  res.status(200).json({
+    status: "success",
+    data: {
+      tour,
+    },
+  });
+});
+
+export const deleteTour = catchAsyncError(async (req, res, next) => {
+  const tour = await Tour.findOneAndDelete({
+    _id: req.params.id,
+  });
+
+  // if (!tour)
+  //   return next(new AppError(`Can not delete tour that does not exist`, 404));
+
+  res.status(204).json({
+    status: "success",
+    message: "tour deleted",
+  });
+});
