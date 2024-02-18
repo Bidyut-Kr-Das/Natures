@@ -14,6 +14,8 @@ import { checkId } from "#middlewares/tour.middleware.js";
 
 const router = Router();
 
+//! root route is /api/v1/tours
+
 router.param("id", checkId);
 // router.param("name", checkName);
 

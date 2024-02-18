@@ -3,14 +3,7 @@ import APIfeatures from "#utils/apiFeatures.js";
 import AppError from "#utils/appError.js";
 
 //helper functon
-const catchAsyncError = (requestHandler) => {
-  //This function will return a function that will be called by express when this controller is needed
-  return (req, res, next) => {
-    requestHandler(req, res, next).catch((err) => {
-      next(err);
-    });
-  };
-};
+import catchAsyncError from "#utils/catchAsyncError.js";
 
 //get all tours
 export const getAllTours = catchAsyncError(async (req, res, next) => {

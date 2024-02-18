@@ -3,18 +3,17 @@ import app from "./app.js";
 import connectDB from "#db/index.js";
 import { DB_NAME } from "./constants.js";
 
+dotenv.config({ path: "./.config.env" });
+
 process.on(`uncaughtException`, (error) => {
   console.log(`uncaught exception occured Shutting down`);
   console.log(`${error.name}:${error.message}`);
-  process.exit(1);
+  process.exit(1); // <- we dont need server here as it will not happend asynchronously in our code
 });
-
-dotenv.config({ path: "./.config.env" });
 
 connectDB().then(() => {
   console.log(`connected to the database ${DB_NAME}`);
 });
-// console.log(@routes);
 
 const port = process.env.PORT || 3002;
 const server = app.listen(port, () => {

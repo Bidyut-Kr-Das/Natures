@@ -3,6 +3,7 @@ import express from "express";
 
 //route import
 import tourRouter from "#routes/tours.routes.js";
+import userRouter from "#routes/users.routes.js";
 
 //error handler middleware import
 import errorHandler from "#middlewares/error.middleware.js";
@@ -13,12 +14,13 @@ const app = express();
 //middleware to parse the incoming json req into actual json req
 app.use(express.json());
 
-//this is used to parse the url 
+//this is used to parse the url
 //extended true means object inside object is also allowed
 app.use(express.urlencoded({ extended: true }));
 
 //routing
 app.use(`/api/v1/tours`, tourRouter);
+app.use(`/api/v1/users`, userRouter);
 
 //This point of code means that route is not handled yet
 app.all("*", (req, res, next) => {

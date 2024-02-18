@@ -56,7 +56,7 @@ class APIfeatures {
         .join(" ");
       this.query = this.query.select(JSON.parse(fieldString));
     } else {
-      this.query = this.query.select("-createdAt -__v");
+      this.query = this.query.select("-createdAt -updatedAt -__v");
     }
     return this;
   }
