@@ -42,9 +42,20 @@ const handleDuplicateFieldsDB = (error) => {
   return new AppError(message, 400);
 };
 
+//function to handle validation error
+const handleValidationErrorDB = (error) => {
+  const errors = Object.values(error.errors).map((errorElement) => {
+    // <- taking each property of the error.errors an array is created then we can use the map method to iterate over the element and access the message of that error
+    return errorElement.message;
+  });
+  const message = `Invalid input data ${errors.join("\n")}`;
+  return new AppError(message, 400);
+};
+
 export {
   sendErrorDev,
   sendErrorProduction,
   handleCastErrorDB,
   handleDuplicateFieldsDB,
+  handleValidationErrorDB,
 };

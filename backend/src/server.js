@@ -16,5 +16,7 @@ connectDB()
 
 const port = process.env.PORT || 3002;
 app.listen(port, () => {
-  console.log(`backend is running for natours app in port ${port}`);
+  console.log(
+    `backend is running in ${process.env.NODE_ENV} mode for natours app in port ${port}`,
+  );
 });

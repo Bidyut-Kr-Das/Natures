@@ -4,6 +4,7 @@ import {
   sendErrorProduction,
   handleCastErrorDB,
   handleDuplicateFieldsDB,
+  handleValidationErrorDB,
 } from "#controllers/error.controller.js";
 
 const errorHandler = (err, req, res, next) => {
@@ -15,6 +16,7 @@ const errorHandler = (err, req, res, next) => {
     let error = { ...err };
     if (err.name === `CastError`) error = handleCastErrorDB(error);
     if (err.code === 11000) error = handleDuplicateFieldsDB(error);
+    if (err.name === `ValidationError`) error = handleValidationErrorDB(error);
     sendErrorProduction(error, res);
   }
 };

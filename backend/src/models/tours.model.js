@@ -7,6 +7,8 @@ const tourSchema = new Schema({
     required: [true, "Tour must have a name property."],
     unique: true,
     trim: true,
+    maxlength: [20, `name must have less than or equal to 20 characters`],
+    minlength: [10, `name must have greater than or equal to 10 characters`],
   },
   duration: {
     type: Number,
@@ -25,6 +27,8 @@ const tourSchema = new Schema({
   ratingsAverage: {
     type: Number,
     default: 4.5,
+    max: [5, `The rating must be less than or equal to 5`],
+    min: [1, `The rating must be greater than or equal to 1`],
   },
   ratingsQuantity: {
     type: Number,
