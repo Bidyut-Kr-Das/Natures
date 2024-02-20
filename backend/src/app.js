@@ -1,6 +1,6 @@
 //package import
 import express from "express";
-
+import cors from "cors";
 //route import
 import tourRouter from "#routes/tours.routes.js";
 import userRouter from "#routes/users.routes.js";
@@ -10,6 +10,13 @@ import errorHandler from "#middlewares/error.middleware.js";
 import AppError from "#utils/appError.js";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  }),
+);
 
 //middleware to parse the incoming json req into actual json req
 app.use(express.json());

@@ -1,6 +1,9 @@
 import { model, Schema } from "mongoose";
 import validator from "validator";
 
+//middleware import
+import { passwordEncryption } from "#middlewares/user.middleware.js";
+
 const userSchema = new Schema(
   {
     name: {
@@ -34,6 +37,9 @@ const userSchema = new Schema(
     timestamps: true,
   },
 );
+
+//calling pre middleware to encrypt the password before saving to database
+userSchema.pre(`save`, passwordEncryption);
 
 const User = model("User", userSchema);
 

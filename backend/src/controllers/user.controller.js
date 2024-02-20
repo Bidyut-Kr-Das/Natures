@@ -11,6 +11,7 @@ export const getAllUsers = catchAsyncError(async (req, res, next) => {
   const users = await fullQuery.query;
   res.status(200).json({
     status: "success",
+    results: users.length,
     data: {
       users,
     },
